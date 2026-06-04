@@ -1,0 +1,29 @@
+name: Testes de Mutação (Stryker)
+on: workflow_dispatch
+
+jobs:
+  mutation_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout project
+        uses: actions/checkout@v4
+
+      - name: install nodejs & setup cache
+        uses: actions/setup-node@v4
+        with: 
+          node-version: 24.x
+          cache: 'yarn' # Ativa o cache automático do node_modules/yarn
+
+      - name: installing dependencies
+        run: yarn install --frozen-lockfile # Garante instalação idêntica ao lockfile
+
+      - name: running mutation tests
+        run: npx stryker run
+
+      - name: upload stryker report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stryker-mutation-report
+          path: reports/stryker/
+          retention-days: 14
