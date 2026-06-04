@@ -22,12 +22,12 @@ jobs:
         run: yarn install --frozen-lockfile # Garante instalação idêntica ao lockfile
 
       - name: running mutation tests
-        run: npx stryker run
+        run: npx stryker run --reporters clear-text,html
 
       - name: upload stryker report
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: stryker-mutation-report
-          path: reports/mutation/html/
+          path: reports
           retention-days: 14
