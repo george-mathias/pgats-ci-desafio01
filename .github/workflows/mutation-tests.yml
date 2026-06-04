@@ -29,5 +29,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: stryker-mutation-report
-          path: reports/stryker/
+          path: reports/mutation/html/
           retention-days: 14
