@@ -1,5 +1,9 @@
 name: Testes de Mutação (Stryker)
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - 'exercicio02'
 
 jobs:
   mutation_job:
