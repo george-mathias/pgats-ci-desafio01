@@ -3,14 +3,36 @@ name: self-hosted pipeline
 on: [push, workflow_dispatch]
 
 jobs:
-  job-no-container:
-    runs-on: self-hosted # Vai encontrar o seu container ativo
-
+  teste-local:
+    runs-on: self-hosted
+    
     steps:
-      - name: Baixar o código
+      - name: checkout project
         uses: actions/checkout@v4
 
-      - name: Rodar comandos internos
-        run: |
-          echo "Olá! Estou rodando de forma isolada dentro do container Docker no Windows."
-          uname -a
+      - name: install nodejs
+        uses: actions/setup-node@v4
+        with: 
+          node-version: 24.x
+
+      - name: install yarn global
+        run: npm install -g yarn
+
+      - name: cache yarn dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            **/node_modules
+            ~/.cache/yarn
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: installing dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: installing playwright browsers and system dependencies
+        run: npx playwright install --with-deps
+
+      - name: runing e2e tests
+        run: yarn run e2e
