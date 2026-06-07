@@ -1,0 +1,16 @@
+name: self-hosted pipeline
+
+on: [push, workflow_dispatch]
+
+jobs:
+  job-no-container:
+    runs-on: self-hosted # Vai encontrar o seu container ativo
+
+    steps:
+      - name: Baixar o código
+        uses: actions/checkout@v4
+
+      - name: Rodar comandos internos
+        run: |
+          echo "Olá! Estou rodando de forma isolada dentro do container Docker no Windows."
+          uname -a
