@@ -1,7 +1,12 @@
 # pgats-ci-challenge01
 ```
 exercício 03
-Leia sobre self-hosted runners/agents. Avalie: Quando faz sentido usar esse recurso? Outras plataformas oferecem recursos similares? Implemente um self-hosted agent para executar sua pipeline.
+Leia sobre self-hosted runners/agents. Avalie:
+Quando faz sentido usar esse recurso?
+Outras plataformas oferecem recursos similares?
+Implemente um self-hosted agent para executar sua pipeline.
+
+Evidências na pasta _exercicio03
 ```
 
 ## Vantagens
@@ -21,3 +26,9 @@ Leia sobre self-hosted runners/agents. Avalie: Quando faz sentido usar esse recu
 ## Quando escolher cada opção
 * **Self-Hosted**: Você tem fluxos de CI/CD que duram horas, precisa implantar em uma VPC privada, ou exige hardware específico (como GPUs para Machine Learning).
 * **GitHub-Hosted**: Você quer foco total no desenvolvimento, possui projetos de código aberto (open-source) ou tem fluxos de trabalho leves e padronizados.
+
+## Principais Alternativas no Mercado
+* **GitLab CI/CD (GitLab Runner)**: É o concorrente mais maduro nessa categoria. O GitLab Runner é um agente de código aberto extremamente versátil, que suporta múltiplos executores (Docker, Kubernetes, SSH ou VirtualBox) e gerencia o isolamento de builds de forma nativa.
+* **Azure Pipelines (Self-hosted Agents)**: Como o GitHub pertence à Microsoft, o Azure DevOps utiliza uma tecnologia de agentes muito parecida. Os Self-hosted Agents rodam em Windows, Linux ou macOS e integram-se perfeitamente com redes corporativas da Azure.
+* **Bitbucket (Bitbucket Pipelines Runners)**: O Bitbucket oferece os Pipelines Runners, que permitem executar automações atrás de firewalls ou em servidores locais (on-premises), tanto em Linux quanto em Windows e macOS.
+* **CircleCI (Runner)**: A plataforma disponibiliza o CircleCI Runner, permitindo que você conecte sua própria infraestrutura à nuvem do CircleCI, ideal para acessar recursos de rede privada ou arquiteturas de hardware incomuns.
